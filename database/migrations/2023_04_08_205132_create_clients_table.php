@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('surname', 100);
+            $table->string('personal_code', 100);
+            $table->string('acc_number', 100);
             $table->unsignedTinyInteger('tt');
             $table->timestamps();
         });

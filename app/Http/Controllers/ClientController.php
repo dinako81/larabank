@@ -26,6 +26,8 @@ class ClientController extends Controller
         $client = new Client;
         $client->name = $request->name;
         $client->surname = $request->surname;
+        $client->personal_code = $request->personal_code;
+        $client->acc_number = $request->acc_number;
         $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
         return redirect()->route('clients-index');
@@ -49,6 +51,7 @@ class ClientController extends Controller
     {
         $client->name = $request->name;
         $client->surname = $request->surname;
+        $client->personal_code = $request->personal_code;
         $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
         return redirect()->route('clients-index');

@@ -20,6 +20,16 @@
                             <input type="text" class="form-control" name="surname" value={{old('surname')}}>
                             <div class="form-text">Please add client surname here</div>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Personal code</label>
+                            <input type="text" class="form-control" name="personal_code" value={{old('personal_code')}}>
+                            <div class="form-text">Please add client personal code here</div>
+                        </div>
+                        <div class="mb-3 readonly">
+                            <label class="form-label">Account number</label>
+                            <input type="text" class="form-control" name="acc_number" value={{old('acc_number')}}>
+                            <div class="form-text">Please add client personal code here</div>
+                        </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" @if(old('tt')) checked @endif id="tt" name="tt">
                             <label class="form-check-label" for="tt">Has TikTok account</label>

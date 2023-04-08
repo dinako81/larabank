@@ -20,6 +20,12 @@
                             <input type="text" class="form-control" name="surname" value="{{ old('surname', $client->surname) }}">
                             <div class="form-text">Please add client surname here</div>
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">Client Personal Code</label>
+                            <input type="text" class="form-control" name="personal_code" value="{{ old('personal_code', $client->personal_code) }}">
+                            <div class="form-text">Please add client personal code here</div>
+                        </div>
+
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="tt" name="tt" {{  old('tt',  $client->tt ? 'checked' : '') }}>
                             <label class="form-check-label" for="tt">Has TikTok account</label>
