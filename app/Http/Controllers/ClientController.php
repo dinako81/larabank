@@ -19,7 +19,12 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $client = new Client;
+        $client->name = $request->name;
+        $client->surname = $request->surname;
+        $client->tt = isset($request->tt) ? 1 : 0;
+        $client->save();
+        return redirect()->back();
     }
 
     public function show(Client $client)
