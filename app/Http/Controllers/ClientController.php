@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -23,6 +24,19 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3',
+            'surname' => 'required|min:3',
+        ]);
+ 
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator);
+        }
+
+
         $client = new Client;
         $client->name = $request->name;
         $client->surname = $request->surname;
