@@ -25,15 +25,20 @@
                             <input type="text" class="form-control" name="personal_code" value={{old('personal_code')}}>
                             <div class="form-text">Please add client personal code here</div>
                         </div>
-                        <div class="mb-3 readonly">
+                        <div class="mb-3">
                             <label class="form-label">Account number</label>
-                            <input type="text" class="form-control" name="acc_number" value={{old('acc_number')}}>
+                            <input readonly type="text" class="form-control" name="acc_number" value="0">
                             <div class="form-text">Please add client personal code here</div>
                         </div>
-                        <div class="mb-3 form-check">
+                        <div class="mb-3 invisible">
+                            <label class="form-label">Account balance</label>
+                            <input readonly type="number" class="form-control" name="acc_balance" value="0">
+                            <div class="form-text">Please add client personal code here</div>
+                        </div>
+                        {{-- <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" @if(old('tt')) checked @endif id="tt" name="tt">
                             <label class="form-check-label" for="tt">Has TikTok account</label>
-                        </div>
+                        </div> --}}
                         <button type="submit" class="btn btn-primary">Submit</button>
                         @csrf
                     </form>

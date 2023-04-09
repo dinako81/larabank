@@ -20,6 +20,7 @@ class ClientController extends Controller
     public function create()
     {
         return view ('clients.create');
+        
     }
 
     public function store(Request $request)
@@ -28,9 +29,11 @@ class ClientController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
             'surname' => 'required|min:3',
+            'personal_code' => 'required|min:11',
         ]);
  
         if ($validator->fails()) {
+            $request->flash();
             return redirect()
                         ->back()
                         ->withErrors($validator);

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\ClientController as CL;
+use App\Http\Controllers\FundsController as F;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,9 @@ Route::prefix('clients')->name('clients-')->group(function () {
     Route::get('/edit/{client}', [CL::class, 'edit'])->name('edit');
     Route::put('/edit/{client}', [CL::class, 'update'])->name('update');
     Route::delete('/delete/{client}', [CL::class, 'destroy'])->name('delete');
+});
+
+Route::prefix('funds')->name('funds-')->group(function () {
+    Route::get('/addfunds/{client}', [F::class, 'addfunds'])->name('addfunds');
+    Route::put('/withdrawfunds/{client}', [F::class, 'withdrawfunds'])->name('withdrawfunds');
 });
