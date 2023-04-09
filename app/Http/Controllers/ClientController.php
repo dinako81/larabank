@@ -30,15 +30,16 @@ class ClientController extends Controller
             'name' => 'required|min:3',
             'surname' => 'required|min:3',
             'personal_code' => 'required|min:11',
-        ]);
- 
+        ]); 
+
+        // p_c regex validation
+        
         if ($validator->fails()) {
             $request->flash();
             return redirect()
                         ->back()
                         ->withErrors($validator);
         }
-
 
         $client = new Client;
         $client->name = $request->name;
@@ -47,7 +48,9 @@ class ClientController extends Controller
         $client->acc_number = $request->acc_number;
         $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
-        return redirect()->route('clients-index');
+        return redirect()
+        ->route('clients-index')
+        ->with('ok', 'New client was created');
     }
 
     public function show(Client $client)
@@ -66,18 +69,37 @@ class ClientController extends Controller
 
     public function update(Request $request, Client $client)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3',
+            'surname' => 'required|min:3',
+            'personal_code' => 'required|min:11',
+        ]);
+
+        // p_c regex validation
+ 
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()
+                        ->back()
+                        ->withErrors($validator);
+        }
+
         $client->name = $request->name;
         $client->surname = $request->surname;
         $client->personal_code = $request->personal_code;
         $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
-        return redirect()->route('clients-index');
+        return redirect()
+        ->route('clients-index')
+        ->with('ok', 'This client was updated');
     }
 
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route('clients-index');
+        return redirect()
+        ->route('clients-index')
+        ->with('info', 'Client was deleted');
 
     }
 }
