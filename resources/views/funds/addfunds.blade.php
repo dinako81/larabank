@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-8">
-            <div class="card mt-5">
+        <div class="col-4">
+            <div class="card mt-5 shadow">
                 <div class="card-header grey">
                     <h1>Add Funds</h1>
                 </div>
@@ -22,7 +22,7 @@
                         <div class="mb-3">
                             <input type="text" class="form-control" name="acc_balance" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary brown">Add Funds</button>
+                        <button type="submit" class="btn btn-outline-dark brown">Add Funds</button>
                         @csrf
                         @method('put')
                     </form>

@@ -17,9 +17,25 @@ class FundsController extends Controller
 
     public function plusfunds(Request $request, Client $client)
     {
-        $client->acc_balance = $request->acc_balance + $client->acc_balance;
+        // $validator = Validator::make($request->all(), [
+           
+
+        // ]);
+
+        // // suma skaiciai regex validation
+ 
+        // if ($validator->fails()) {
+        //     $request->flash();
+        //     return redirect()
+        //                 ->back()
+        //                 ->withErrors($validator);
+        // }
+
+        $client->acc_balance = $request->acc_balance+ $client->acc_balance;
         $client->save();
-        return redirect()->route('clients-addfunds');
+        return redirect()
+        ->route('clients-index')
+        ->with('ok', 'Your amount has increaseds!');
     }
 
     public function withdrawfunds(Client $client)
@@ -31,8 +47,26 @@ class FundsController extends Controller
 
     public function minusfunds(Request $request, Client $client)
     {
+ // $validator = Validator::make($request->all(), [
+           
+
+        // ]);
+
+        // // suma skaiciai regex validation
+ 
+        // if ($validator->fails()) {
+        //     $request->flash();
+        //     return redirect()
+        //                 ->back()
+        //                 ->withErrors($validator);
+        // }
+
+
         $client->acc_balance =  $client->acc_balance - $request->acc_balance;
         $client->save();
-        return redirect()->route('clients-index');
+        return redirect()
+        ->route('clients-index')
+        ->with('ok', 'Your amount has decreased!');
+
     }
 }

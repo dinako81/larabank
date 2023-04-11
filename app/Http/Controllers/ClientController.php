@@ -23,9 +23,13 @@ class ClientController extends Controller
     }
 
     public function create()
+
     {
-        return view ('clients.create');
+        $acc_number = 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         
+        return view ('clients.create', [
+            'acc_number' => $acc_number
+        ]);
     }
 
     public function store(Request $request)
@@ -99,8 +103,21 @@ class ClientController extends Controller
         ->with('ok', 'This client was updated');
     }
 
-    public function destroy(Client $client)
+    public function destroy(Request $request, Client $client)
     {
+           
+        // $validator = Validator::make($request->all(), [
+        //     'acc_balance' => 'required|numeric|min:0',
+
+        // ]); 
+
+        // if ($validator->fails()) {
+        //     $request->flash();
+        //     return redirect()
+        //     ->route('clients-index')
+        //      ->with($validator);
+        // }
+
         $client->delete();
         return redirect()
         ->route('clients-index')

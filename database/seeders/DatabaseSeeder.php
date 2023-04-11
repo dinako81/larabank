@@ -28,9 +28,9 @@ class DatabaseSeeder extends Seeder
             DB::table('clients')->insert([
                 'name' => $faker->firstName,
                 'surname' => $faker->lastName,
-                'personal_code' => rand(0, 11),
-                'acc_number' => rand(0, 11),
-                'acc_balance'=> rand(0, 15),
+                'personal_code' => rand(10000000000, 99999999999),
+                'acc_number' => 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9),
+                'acc_balance'=> "0",
                 'tt' => rand(0, 1),
             ]);
         }

@@ -27,7 +27,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Account number</label>
-                            <input readonly type="text" class="form-control" name="acc_number" value="0">
+                            <input readonly type="text" class="form-control" name="acc_number" value="<?= $acc_number ?>">
                             <div class="form-text">Please add client personal code here</div>
                         </div>
                         <div class="mb-3 invisible">
