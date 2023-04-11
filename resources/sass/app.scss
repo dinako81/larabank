@@ -25,16 +25,17 @@
     .buttons {
         display: flex;
         justify-content: flex-end;
-        gap: 10px;
+        gap: 8px;
     }
 }
 
 .grey {
-    background-color: grey;
+    background-color: #7B7B7B;
+    
 }
 
 .brown {
-    background-color: #A49E7A;
+    background-color: #597d35;
 }
 
 .btn:hover {
@@ -45,3 +46,14 @@
 .shadow {
     box-shadow: 0px 0px 10px rgba(90, 81, 33, 0.5) !important;
   }
+
+.black {
+    color: #000000;
+    font-size: 10px;
+    font-style: italic;
+}
+
+body{
+    // background-image: url("../../img/imgback.jpeg");
+    
+}

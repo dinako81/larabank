@@ -17,10 +17,10 @@
                             Surname: <b> {{$client->surname}} </b>
                         </div>
                         <div class="mb-3">
-                            Account balance: <b> {{$client->acc_balance}} </b>
+                            Account balance: <b> {{number_format($client->acc_balance, 2, ',', ' ')}} Eur </b>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="acc_balance" value="">
+                            <input type="text" class="form-control brown" name="acc_balance" value="">
                         </div>
                         <button type="submit" class="btn btn-outline-dark brown">Withdraw Funds</button>
                         @csrf

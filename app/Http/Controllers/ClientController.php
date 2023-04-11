@@ -15,18 +15,26 @@ class ClientController extends Controller
 
     public function index()
     {
-        $clients = Client::all()->sortBy('name');
+        $clients = Client::all()->sortBy('surname');
+
+        $sort = Client::all();
+        
+        if ($sort == 'surname_asc') {
+            usort($clients, fn($a, $b) => $a['surname'] <=> $b['surname']);
+        }
+        elseif ($sort == 'surname_desc') {
+            usort($clients, fn($a, $b) => $b['surname'] <=> $a['surname']);
+        }
 
         return view('clients.index', [
-            'clients' => $clients
+            'clients' => $clients,
+            'sort' => $sort
         ]);
     }
 
     public function create()
-
     {
         $acc_number = 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
-        
         return view ('clients.create', [
             'acc_number' => $acc_number
         ]);
@@ -36,12 +44,10 @@ class ClientController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3',
-            'surname' => 'required|min:3',
-            'personal_code' => 'required|min:11',
+            'name' => 'required|min:3|alpha',
+            'surname' => 'required|min:3|alpha',
+            'personal_code' => 'required|min:11|numeric',
         ]); 
-
-        // p_c regex validation
         
         if ($validator->fails()) {
             $request->flash();
@@ -55,7 +61,7 @@ class ClientController extends Controller
         $client->surname = $request->surname;
         $client->personal_code = $request->personal_code;
         $client->acc_number = $request->acc_number;
-        $client->tt = isset($request->tt) ? 1 : 0;
+        $client->acc_balance = $request->acc_balance;
         $client->save();
         return redirect()
         ->route('clients-index')
@@ -79,9 +85,9 @@ class ClientController extends Controller
     public function update(Request $request, Client $client)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3',
-            'surname' => 'required|min:3',
-            'personal_code' => 'required|min:11',
+            'name' => 'required|min:3|alpha',
+            'surname' => 'required|min:3|alpha',
+            'personal_code' => 'required|min:11|numeric',
         ]);
 
         // p_c regex validation
@@ -96,32 +102,26 @@ class ClientController extends Controller
         $client->name = $request->name;
         $client->surname = $request->surname;
         $client->personal_code = $request->personal_code;
-        // $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
         return redirect()
         ->route('clients-index')
-        ->with('ok', 'This client was updated');
+        ->with('ok', 'This client was updated!');
     }
 
-    public function destroy(Request $request, Client $client)
+    public function destroy(Client $client)
     {
-           
-        // $validator = Validator::make($request->all(), [
-        //     'acc_balance' => 'required|numeric|min:0',
-
-        // ]); 
-
-        // if ($validator->fails()) {
-        //     $request->flash();
-        //     return redirect()
-        //     ->route('clients-index')
-        //      ->with($validator);
-        // }
+        if ($client->acc_balance > 0) {
+            return redirect()
+            ->route('clients-index')
+            ->with('warn', 'The client has funds in the account!');
+    
+        } else {
 
         $client->delete();
         return redirect()
         ->route('clients-index')
-        ->with('info', 'Client was deleted');
+        ->with('info', 'Teh client was deleted!');
+        }
 
     }
 }

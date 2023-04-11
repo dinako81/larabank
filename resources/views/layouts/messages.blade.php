@@ -8,3 +8,8 @@
     {{ Session::get('info') }}
 </div>
 @endif
+@if (Session::has('warn'))
+<div class="alert alert-danger">
+    {{ Session::get('warn') }}
+</div>
+@endif

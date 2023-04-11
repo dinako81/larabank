@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('personal_code', 100);
             $table->string('acc_number', 100);
             $table->integer('acc_balance')->default(0);
-            $table->unsignedTinyInteger('tt');
             $table->timestamps();
         });
     }
