@@ -15,12 +15,23 @@ class FundsController extends Controller
         ]);
     }
 
-    public function update(Request $request, Client $client)
+    public function plusfunds(Request $request, Client $client)
     {
-        $client->name = $request->name;
-        $client->surname = $request->surname;
-        $client->personal_code = $request->personal_code;
-        $client->tt = isset($request->tt) ? 1 : 0;
+        $client->acc_balance = $request->acc_balance + $client->acc_balance;
+        $client->save();
+        return redirect()->route('clients-addfunds');
+    }
+
+    public function withdrawfunds(Client $client)
+    {
+        return view('funds.withdrawfunds', [
+            'client' => $client
+        ]);
+    }
+
+    public function minusfunds(Request $request, Client $client)
+    {
+        $client->acc_balance =  $client->acc_balance - $request->acc_balance;
         $client->save();
         return redirect()->route('clients-index');
     }

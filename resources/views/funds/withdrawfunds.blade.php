@@ -5,24 +5,24 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="card mt-5">
-                <div class="card-header">
+                <div class="card-header grey">
                     <h1>Withdraw Funds</h1>
                 </div>
-                <div class="card-body">
-                    <form action="{{route('clients-update', $client)}}" method="post">
+                <div class="card-body grey">
+                    <form action="{{route('clients-withdrawfunds', $client)}}" method="post">
                         <div class="mb-3">
-                            {{$client->name}}
+                            Name: <b> {{$client->name}} </b>
                         </div>
                         <div class="mb-3">
-                            {{$client->surname}}
+                            Surname: <b> {{$client->surname}} </b>
                         </div>
                         <div class="mb-3">
-                            {{$client->acc_balance}}
+                            Account balance: <b> {{$client->acc_balance}} </b>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="acc_balance" value="{{ old('acc_balance', $client->acc_balance) }}">
+                            <input type="text" class="form-control" name="acc_balance" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary">Withdraw Funds</button>
+                        <button type="submit" class="btn btn-primary brown">Withdraw Funds</button>
                         @csrf
                         @method('put')
                     </form>

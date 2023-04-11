@@ -92,7 +92,7 @@ class ClientController extends Controller
         $client->name = $request->name;
         $client->surname = $request->surname;
         $client->personal_code = $request->personal_code;
-        $client->tt = isset($request->tt) ? 1 : 0;
+        // $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
         return redirect()
         ->route('clients-index')

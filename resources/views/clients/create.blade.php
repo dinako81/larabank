@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="card mt-5">
-                <div class="card-header">
+                <div class="card-header grey">
                     <h1>Add Client</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-body grey">
                     <form action="{{route('clients-store')}}" method="post">
                         <div class="mb-3">
                             <label class="form-label">Client Name</label>
@@ -39,7 +39,7 @@
                             <input type="checkbox" class="form-check-input" @if(old('tt')) checked @endif id="tt" name="tt">
                             <label class="form-check-label" for="tt">Has TikTok account</label>
                         </div> --}}
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary brown">Submit</button>
                         @csrf
                     </form>
                 </div>
