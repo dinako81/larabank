@@ -40,7 +40,7 @@ class ClientController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Client $client)
     {
 
         $validator = Validator::make($request->all(), [
@@ -54,8 +54,14 @@ class ClientController extends Controller
             return redirect()
                         ->back()
                         ->withErrors($validator);
-        }
 
+        } if ($client->personal_code = $request->personal_code) {
+            return redirect()
+            ->route('clients-index')
+            ->with('warn', 'The personal code exist!');
+    
+        }
+        
         $client = new Client;
         $client->name = $request->name;
         $client->surname = $request->surname;
@@ -66,6 +72,7 @@ class ClientController extends Controller
         return redirect()
         ->route('clients-index')
         ->with('ok', 'New client was created');
+        
     }
 
     public function show(Client $client)
